@@ -12,4 +12,6 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/admin.js', 'public/js')
-   .sass('resources/assets/sass/admin.scss', 'public/css').version();
+   .sass('resources/assets/sass/admin.scss', 'public/css')
+    .copy('node_modules/admin-lte/dist/img','public/images')
+    .version();
