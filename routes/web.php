@@ -28,7 +28,17 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         // 退出
         Route::get('logout', 'LoginController@logout');
     });
+
+
 });
+
+Route::namespace('Auth')->prefix('auth')->group(function () {
+    Route::prefix('admin')->group(function () {
+        // 登录认证
+        Route::post('login', 'AdminController@login')->name('admin.login');
+    });
+});
+
 
 //后台模块
 Route::namespace('Admin')->prefix('admin')->group(function (){
