@@ -12,20 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('admin/index');
+    return view('welcome');
 });
 
 Route::get('admin', function () {
-    return view('admin/index');
+    return view('welcome');
 });
 
 // 后台登录页面
-//Route::namespace('Admin')->prefix('admin')->group(function () {
-//    Route::redirect('/', url('admin/login/index'));
-//    Route::prefix('login')->group(function () {
-//        // 登录页面
-//        Route::get('index', 'LoginController@index');
-//        // 退出
-//        Route::get('logout', 'LoginController@logout');
-//    });
-//});
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::redirect('/', url('admin/login/index'));
+    Route::prefix('login')->group(function () {
+        // 登录页面
+        Route::get('index', 'LoginController@index');
+        // 退出
+        Route::get('logout', 'LoginController@logout');
+    });
+});
+
+//后台模块
+Route::namespace('Admin')->prefix('admin')->group(function (){
+    Route::prefix('index')->group(function () {
+        // 后台首页
+        Route::get('index', 'IndexController@index');
+    });
+});
