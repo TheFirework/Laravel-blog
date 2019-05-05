@@ -23,7 +23,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         // 登录页面
         Route::get('index', 'LoginController@index')->middleware('admin.login');
         // 退出登陆
-        Route::get('logout', 'LoginController@logout');
+        Route::get('logout', 'LoginController@logout')->name('admin.logout');
     });
 
 
