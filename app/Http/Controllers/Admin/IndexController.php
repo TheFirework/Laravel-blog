@@ -11,8 +11,6 @@ class IndexController extends Controller
     // 后台首页
     public function index()
     {
-        MyFlash::success('欢迎回来!');
-
         return view('admin.index.index');
     }
 

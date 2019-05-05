@@ -11,7 +11,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-        MyFlash::success('欢迎回来!');
         return view('admin.login.index');
     }
 

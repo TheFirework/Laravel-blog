@@ -26,6 +26,8 @@
         <a href="jvavascript::void(0)"><b>Laravel</b>lab</a>
     </div>
 
+    @include('admin.shared._errors')
+
     <!-- /.login-logo -->
     <div class="login-box-body">
         <form action="{{ route('admin.login') }}" method="post">
