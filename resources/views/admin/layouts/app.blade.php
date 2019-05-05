@@ -20,16 +20,18 @@
     <!-- 样式 -->
     <link href="{{ asset('laravel-admin/laravel-admin/laravel-admin.css') }}" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/square/blue.css") }}">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @yield('css')
 </head>
 <body class="skin-blue-light sidebar-mini">
 <div class="wrapper" id="app" >
-
     @include('admin.layouts._header')
     @include('admin.layouts._slidebar')
     <div class="content-wrapper">
@@ -38,17 +40,22 @@
     @include('admin.layouts._footer')
 </div>
 <!-- JS 脚本 -->
-
 <script>
     function LA() {}
     LA.token = "{{ csrf_token() }}";
 </script>
-
 <script src="{{ asset('laravel-admin/AdminLTE/plugins/jQuery/jquery.min.js') }}"></script>
 <script src="{{ asset('laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('laravel-admin/AdminLTE/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js")}}"></script>
+<script src="{{ asset("laravel-admin/laravel-admin/laravel-admin.js")}}"></script>
 
 <script>
+    $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+    });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -39,8 +39,15 @@ Route::namespace('Auth')->prefix('auth')->group(function () {
 
 //后台模块
 Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(function (){
+
     Route::prefix('index')->group(function () {
         // 后台首页
         Route::get('index', 'IndexController@index');
+    });
+
+    //系统管理
+    Route::prefix('auth')->group(function (){
+        // 管理员列表
+        Route::get('users', 'AuthController@users')->name('admin.auth.users');
     });
 });
