@@ -48,6 +48,10 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     //系统管理
     Route::prefix('auth')->group(function (){
         // 管理员列表
-        Route::get('users', 'AuthController@users')->name('admin.auth.users');
+        Route::get('/users', 'AuthController@users')->name('admin.auth.users.index');
+        Route::get('/users/create', 'AuthController@createUser')->name('admin.auth.users.create');
+        Route::post('/users', 'AuthController@storeUser');
+        Route::get('/users/{user}/edit', 'AuthController@editUser')->name('admin.auth.users.edit');
+        Route::delete('/users/{user}', 'AuthController@destroyUser');
     });
 });

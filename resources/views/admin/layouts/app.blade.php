@@ -8,8 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Laravel Blog') - 后台管理</title>
 
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/bootstrap/css/bootstrap.min.css") }}">
+    <link href="{{ mix('css/laravel-admin.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset("laravel-admin/font-awesome/css/font-awesome.min.css") }}">
     <!-- Theme style -->
@@ -17,8 +16,6 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/_all-skins.min.css") }}">
-    <!-- 样式 -->
-    <link href="{{ asset('laravel-admin/laravel-admin/laravel-admin.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/square/blue.css") }}">
 
@@ -44,12 +41,11 @@
     function LA() {}
     LA.token = "{{ csrf_token() }}";
 </script>
-<script src="{{ asset('laravel-admin/AdminLTE/plugins/jQuery/jquery.min.js') }}"></script>
-<script src="{{ asset('laravel-admin/AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ mix("js/laravel-admin.js")}}"></script>
 <script src="{{ asset('laravel-admin/AdminLTE/dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js")}}"></script>
-<script src="{{ asset("laravel-admin/laravel-admin/laravel-admin.js")}}"></script>
 
+@include('myflash::notification')
 <script>
     $('input').iCheck({
         checkboxClass: 'icheckbox_square-blue',

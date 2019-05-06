@@ -1,3 +1,6 @@
+// Bootstrap
+@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+
 input.content {
     min-height: 0 !important;
     padding: 6px 12px !important;
@@ -59,4 +62,9 @@ a.editable-empty {
 
 .table-has-many label.control-label[for=inputError]+br {
     display: none;
+}
+
+.file-preview-image{
+    width:100% !important;
+    height:auto !important;
 }

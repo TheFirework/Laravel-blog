@@ -33,7 +33,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{ route('admin.auth.users') }}"><i class="fa fa-users"></i>管理员管理</a></li>
+                    <li class="active"><a href="{{ route('admin.auth.users.index') }}"><i class="fa fa-users"></i>管理员管理</a></li>
                     <li><a href="#"><i class="fa fa-user"></i>角色</a></li>
                     <li><a href="#"><i class="fa fa-ban"></i>权限</a></li>
                     <li><a href="#"><i class="fa fa-bars"></i>菜单</a></li>
