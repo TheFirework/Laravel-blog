@@ -4,14 +4,14 @@ namespace App\Http\Requests\Nav;
 
 use App\Http\Requests\Request;
 
-class Store extends Request
+class Update extends Request
 {
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:255',
-            'url'   => 'required|string|url|max:255',
-            'sort'  => 'required|between:0,9999|integer'
+            'name' => 'required|string|max:255|unique:navs,name,' . $this->route('nav')->id,
+            'url' => 'required|string|url|max:255',
+            'sort' => 'required|between:0,9999|integer'
         ];
     }
 
@@ -31,8 +31,8 @@ class Store extends Request
     {
         return [
             'name' => '菜单名',
-            'url'  => '路径',
-            'sort'  => '排序',
+            'url' => '路径',
+            'sort' => '排序',
         ];
     }
 }

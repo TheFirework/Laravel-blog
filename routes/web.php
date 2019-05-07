@@ -38,15 +38,15 @@ Route::namespace('Auth')->prefix('auth')->group(function () {
 
 
 //后台模块
-Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(function (){
+Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(function () {
 
     Route::prefix('index')->group(function () {
         // 后台首页
-        Route::get('/index', 'IndexController@index');
+        Route::get('/index', 'IndexController@index')->name('admin.index.dashboard');
     });
 
     //系统管理
-    Route::prefix('auth')->group(function (){
+    Route::prefix('auth')->group(function () {
         // 管理员列表
         Route::get('/users', 'AuthController@users')->name('admin.auth.users.index');
         //新增管理员视图
@@ -62,13 +62,15 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     });
 
     //系统管理
-    Route::prefix('nav')->group(function (){
+    Route::prefix('nav')->group(function () {
         //菜单列表
-        Route::get('/index','NavController@index')->name('admin.nav.index');
+        Route::get('/index', 'NavController@index')->name('admin.nav.index');
         //新增菜单
-        Route::post('/store','NavController@store')->name('admin.nav.store');
+        Route::post('/store', 'NavController@store')->name('admin.nav.store');
         //编辑菜单视图
         Route::get('/{nav}/edit', 'NavController@edit')->name('admin.nav.edit');
+        //更新菜单
+        Route::patch('/{nav}', 'NavController@update')->name('admin.nav.update');
         //删除菜单
         Route::post('/destroy/{nav}', 'NavController@destroy')->name('admin.nav.destroy');
     });

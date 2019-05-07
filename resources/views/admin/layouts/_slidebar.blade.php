@@ -24,18 +24,25 @@
         {{--</form>--}}
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="active treeview">
+        <ul class="sidebar-menu">
+            <li class="header">菜单</li>
+            <li>
+                <a href="{{ route('admin.index.dashboard') }}">
+                    <i class="fa fa-bar-chart">
+                    </i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
                 <a href="#">
-                    <i class="fa fa-tasks"></i> <span>系统管理</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                    <i class="fa fa-tasks"></i>
+                    <span>系统管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.auth.users.index') }}"><i class="fa fa-users"></i>管理员管理</a></li>
-                    <li><a href="{{ route('admin.nav.index') }}"><i class="fa fa-bars"></i>菜单</a></li>
-                    <li><a href="#"><i class="fa fa-history"></i>操作日志</a></li>
+                    <li><a href="{{ route('admin.auth.users.index') }}"><i class="fa fa-users"></i><span>管理员管理</span></a></li>
+                    <li><a href="{{ route('admin.nav.index') }}"><i class="fa fa-bars"></i><span>菜单</span></a></li>
+                    <li><a href="#"><i class="fa fa-history"></i><span>操作日志</span></a></li>
                 </ul>
             </li>
         </ul>

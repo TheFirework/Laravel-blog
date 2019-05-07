@@ -27,4 +27,15 @@ class UpdateUser extends Request
             'name.regex' => '用户名只支持英文、数字、横杆和下划线。',
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'email' => '邮箱',
+            'name'  => '名称',
+            'avatar'  => '头像',
+            'password'  => '密码',
+            'password_confirmation'  => '确认密码',
+        ];
+    }
 }

@@ -57,7 +57,7 @@ class AuthController extends Controller
             DB::rollBack();
             return redirect()->back();
         }
-        MyFlash::success('管理员已新增成功!');
+        MyFlash::success('管理员新增!');
         return redirect('admin/auth/users');
     }
 
@@ -84,7 +84,7 @@ class AuthController extends Controller
             DB::rollBack();
             return redirect()->back();
         }
-        MyFlash::success('更新管理员成功!');
+        MyFlash::success('管理员更新!');
         return redirect('admin/auth/users');
     }
 
@@ -92,8 +92,10 @@ class AuthController extends Controller
     {
         User::destroy($id);
 
+        MyFlash::success('管理员删除！');
+
         return response()->json([
-            'code' => '100',
+            'code' => 100,
             'msg' => '删除成功',
         ]);
     }

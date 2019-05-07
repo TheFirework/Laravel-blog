@@ -16,7 +16,7 @@
     </section>
 
     <!-- Main content -->
-    <<section class="content">
+    <section class="content">
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -179,7 +179,7 @@
                         axios.delete('/admin/auth/users/' + id)
                             .then(function (response) {
                                 // 请求成功之后重新加载页面
-                                if (response['code'] === 100){
+                                if (response['data']['code'] === 100){
                                     location.reload();
                                 } else {
                                     swal({

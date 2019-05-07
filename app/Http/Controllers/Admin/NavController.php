@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Nav\Store;
+use App\Http\Requests\Nav\Update;
 use App\Models\Nav;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -12,8 +13,8 @@ class NavController extends Controller
 {
     public function index()
     {
-        $navs = Nav::withTrashed()->orderBy('sort', 'desc')->get();
-        return view('admin/nav/index',compact('navs'));
+        $navs = Nav::orderBy('sort', 'desc')->get();
+        return view('admin/nav/index', compact('navs'));
     }
 
     public function store(Store $request)
@@ -22,23 +23,36 @@ class NavController extends Controller
 
         Nav::create($data);
 
-        MyFlash::success('新增菜单成功');
+        MyFlash::success('新增菜单');
         return redirect('admin/nav/index');
     }
 
     public function edit(Nav $nav)
     {
-        dd($nav->getAttributes());
-        return view('admin/nav/edit');
+        return view('admin/nav/edit', compact('nav'));
     }
 
-    public function destroy(Nav $nav)
+    public function update(Nav $nav, Update $request)
     {
-        dd($nav->getAttributes());
-//        Nav::destroy($id);
+        $data = $request->only([
+            'name', 'url', 'sort'
+        ]);
+
+        $nav->update($data);
+
+        MyFlash::success('菜单更新');
+
+        return redirect('admin/nav/index');
+    }
+
+    public function destroy($id)
+    {
+        Nav::destroy($id);
+
+        MyFlash::success('菜单删除！');
 
         return response()->json([
-            'code'=>100,
+            'code' => 100,
             'msg' => '删除成功',
         ]);
     }
