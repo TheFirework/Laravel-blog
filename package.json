@@ -20,6 +20,7 @@
     "dependencies": {
         "admin-lte": "^2.4.10",
         "bootstrap-fileinput": "^5.0.2",
+        "cropper": "^4.0.0",
         "jquery": "3.3.1",
         "sweetalert": "^2.1.2"
     }

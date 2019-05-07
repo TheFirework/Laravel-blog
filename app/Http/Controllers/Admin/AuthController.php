@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\Auth\CreateUser;
+use App\Http\Requests\Auth\UpdateUser;
 use App\Models\User;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use LaravelChen\MyFlash\MyFlash;
 
 class AuthController extends Controller
@@ -34,14 +36,14 @@ class AuthController extends Controller
         return view('admin.auth.users.create');
     }
 
-    public function storeUser(CreateUser $request,ImageUploadHandler $uploader)
+    public function storeUser(CreateUser $request, ImageUploadHandler $uploader)
     {
         $data = $request->all();
 
         $data['is_admin'] = 1;
 
         DB::beginTransaction();
-        try{
+        try {
             $user = User::create($data);
             if ($request->avatar) {
                 $result = $uploader->save($request->avatar, 'avatars', $user->id);
@@ -51,7 +53,7 @@ class AuthController extends Controller
             }
             $user->update($data);
             DB::commit();
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             DB::rollBack();
             return redirect()->back();
         }
@@ -61,7 +63,29 @@ class AuthController extends Controller
 
     public function editUser(User $user)
     {
-        return view('admin.auth.users.edit',compact('user'));
+        return view('admin.auth.users.edit', compact('user'));
+    }
+
+    public function updateUser(UpdateUser $request,User $user,ImageUploadHandler $uploader)
+    {
+        $data = $request->all();
+
+        DB::beginTransaction();
+        try {
+            if ($request->avatar) {
+                $result = $uploader->save($request->avatar, 'avatars', $user->id);
+                if ($result) {
+                    $data['avatar'] = $result['path'];
+                }
+            }
+            $user->update($data);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back();
+        }
+        MyFlash::success('更新管理员成功!');
+        return redirect('admin/auth/users');
     }
 
     public function destroyUser($id)

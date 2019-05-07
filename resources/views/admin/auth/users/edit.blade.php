@@ -33,12 +33,13 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{ url('admin/auth/users') }}" method="post" accept-charset="UTF-8"
+                    <form action="{{ route('admin.auth.users.update',$user->id) }}" method="post" accept-charset="UTF-8"
                           class="form-horizontal" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         {{ csrf_field() }}
+                        {{ method_field('patch') }}
                         <div class="box-body">
-                            <div class="fields-group">
+                            <div class="fields-group box-body">
                                 <div class="form-group">
                                     <label for="id" class="col-sm-2 control-label">ID</label>
                                     <div class="col-sm-8">
@@ -96,7 +97,11 @@
                                                 </label><br>
                                             @endforeach
                                         @endif
-                                            <input id="avatar" name="avatar" type="file" data-browse-on-zone-click="true" data-show-upload="false" data-show-caption="true">
+                                        <input type="file" class="file avatar" name="avatar"
+                                               data-initial-preview="<img src='{{ $user->avatar }}' class='file-preview-image'>"
+                                               data-initial-caption="{{ $user->avatar }}"
+                                               data-show-upload="false"
+                                        />
                                     </div>
                                 </div>
                                 <div class="form-group {!! !$errors->has('password') ?: 'has-error' !!}">
@@ -111,7 +116,7 @@
                                         @endif
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-eye-slash fa-fw"></i></span>
-                                            <input type="password" id="password" name="password" value=""
+                                            <input type="password" id="password" name="password" value="{{ $user->password }}"
                                                    class="form-control password" placeholder="输入 密码"
                                                    aria-autocomplete="list">
                                         </div>
@@ -130,8 +135,30 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-eye-slash fa-fw"></i></span>
                                             <input type="password" id="password_confirmation"
-                                                   name="password_confirmation" value=""
+                                                   name="password_confirmation" value="{{ $user->password }}"
                                                    class="form-control password_confirmation" placeholder="输入 确认密码">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-2  control-label">创建时间</label>
+                                    <div class="col-sm-8">
+                                        <div class="box box-solid box-default no-margin">
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                {{ $user->created_at }}
+                                            </div><!-- /.box-body -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="col-sm-2  control-label">更新时间</label>
+                                    <div class="col-sm-8">
+                                        <div class="box box-solid box-default no-margin">
+                                            <!-- /.box-header -->
+                                            <div class="box-body">
+                                                {{ $user->updated_at }}
+                                            </div><!-- /.box-body -->
                                         </div>
                                     </div>
                                 </div>
@@ -161,38 +188,24 @@
 @section('scriptAfterJs')
     <script src="{{ asset('laravel-admin/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('#avatar').fileinput({
-                language: 'zh', //设置语言
-                // uploadUrl: "", //上传的地址
-                allowedFileExtensions: ['jpg', 'gif', 'png', 'jpeg'],//接收的文件后缀
-                overwriteInitial: false,
-                validateInitialCount: true,
-                initialPreview: [
-                    "<img class='kv-preview-data file-preview-image' src='{{ $user->avatar }}'>",
-                ],
-                initialPreviewConfig: [
-                    {caption: "{{ $user->avatar }}"},
-                ],
-                // layoutTemplates :{
-                //     actionDelete:'', //去除上传预览的缩略图中的删除图标
-                //     actionUpload:'',//去除上传预览缩略图中的上传图片；
-                //     // actionZoom:''   //去除上传预览缩略图中的查看详情预览的缩略图标。
-                // },
-                fileActionSettings: {
-                    showRemove: false, //移除
-                    showUpload: false, //上传
-                    showZoom: true, //放大
-                    showDrag: false,
+        $(document).ready(function () {
+
+            $("input.avatar").fileinput({
+                uploadAsync: false,
+                overwriteInitial: true,
+                initialPreviewAsData: true,
+                browseLabel: "\u6d4f\u89c8",
+                showRemove: false,
+                showUpload: false,
+                layoutTemplates :{
+                    actionDelete:'', //去除上传预览的缩略图中的删除图标
+                    actionUpload:'',//去除上传预览缩略图中的上传图片；
+                    // actionZoom:''   //去除上传预览缩略图中的查看详情预览的缩略图标。
                 },
+                allowedFileTypes: ["image"],
+                minImageWidth:50,
+                minImageHeight:50,
                 maxFileCount: 1, //表示允许同时上传的最大文件个数
-                enctype: 'multipart/form-data',
-                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-                msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
-                browseClass: "btn btn-primary", //按钮样式
-                // dropZoneEnabled: false,//是否显示拖拽区域
-                minImageWidth: 50, //图片的最小宽度
-                minImageHeight: 50,//图片的最小高度
             });
         });
     </script>

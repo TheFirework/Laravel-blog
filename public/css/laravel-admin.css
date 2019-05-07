@@ -8397,7 +8397,11 @@ a.editable-empty {
 }
 
 .file-preview-image {
-  width: 100% !important;
-  height: auto !important;
+  width: auto;
+  height: 160px;
+}
+
+.kv-file-remove {
+  display: none;
 }
 

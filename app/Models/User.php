@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -36,7 +37,7 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($password)
     {
-        if (!empty($password)) {
+        if (!empty($password) && Str::length($password) < 64) {
             $this->attributes['password'] = bcrypt($password);
         }
     }

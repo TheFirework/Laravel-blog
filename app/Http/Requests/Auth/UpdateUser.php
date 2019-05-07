@@ -3,13 +3,16 @@
 namespace App\Http\Requests\Auth;
 
 use App\Http\Requests\Request;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
 
-class CreateUser extends Request
+class UpdateUser extends Request
 {
+
     public function rules()
     {
         return [
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users,email,'.$this->route('user')->id,
             'name'  => 'required|string|max:255|regex:/^[A-Za-z0-9\-\_]+$/',
             'avatar' => 'mimes:jpeg,bmp,png,gif',
             'password' => 'required|confirmed|string|min:6',
