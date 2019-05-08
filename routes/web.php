@@ -42,7 +42,9 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
 
     Route::prefix('index')->group(function () {
         // 后台首页
-        Route::get('/index', 'IndexController@index')->name('admin.index.dashboard');
+        Route::get('/index', 'IndexController@index')->name('admin.index.index');
+        // 仪表盘
+        Route::get('/dashboard', 'IndexController@dashboard')->name('admin.index.dashboard');
     });
 
     //系统管理
@@ -63,15 +65,31 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
 
     //系统管理
     Route::prefix('nav')->group(function () {
-        //菜单列表
+        //导航列表
         Route::get('/index', 'NavController@index')->name('admin.nav.index');
-        //新增菜单
+        //新增导航
         Route::post('/store', 'NavController@store')->name('admin.nav.store');
-        //编辑菜单视图
+        //编辑导航视图
         Route::get('/{nav}/edit', 'NavController@edit')->name('admin.nav.edit');
-        //更新菜单
+        //更新导航
         Route::patch('/{nav}', 'NavController@update')->name('admin.nav.update');
-        //删除菜单
+        //删除导航
         Route::post('/destroy/{nav}', 'NavController@destroy')->name('admin.nav.destroy');
+    });
+
+    //分类管理
+    Route::prefix('category')->group(function () {
+        //分类列表
+        Route::get('/index', 'CategoryController@index')->name('admin.category.index');
+        //新增分类视图
+        Route::get('/create', 'CategoryController@create')->name('admin.category.create');
+        //新增分类
+        Route::post('/', 'CategoryController@store')->name('admin.category.store');
+        //编辑分类视图
+        Route::get('/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
+        //更新分类
+        Route::get('/{category}', 'CategoryController@update')->name('admin.category.update');
+        //删除分类
+        Route::delete('/{nav}', 'CategoryController@destroy')->name('admin.category.destroy');
     });
 });

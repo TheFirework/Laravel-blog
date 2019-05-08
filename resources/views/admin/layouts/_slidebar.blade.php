@@ -27,22 +27,39 @@
         <ul class="sidebar-menu">
             <li class="header">菜单</li>
             <li>
-                <a href="{{ route('admin.index.dashboard') }}">
-                    <i class="fa fa-bar-chart">
+                <a href="{{ route('admin.index.index') }}">
+                    <i class="fa fa-home">
                     </i>
-                    <span>Dashboard</span>
+                    <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.index.dashboard') }}">
+                    <i class="fa fa-tachometer">
+                    </i>
+                    <span>仪表盘</span>
+                </a>
+            </li>
+            <li>
+                <a href="JavaScript:void(0)">
                     <i class="fa fa-tasks"></i>
                     <span>系统管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.auth.users.index') }}"><i class="fa fa-users"></i><span>管理员管理</span></a></li>
-                    <li><a href="{{ route('admin.nav.index') }}"><i class="fa fa-bars"></i><span>菜单</span></a></li>
-                    <li><a href="#"><i class="fa fa-history"></i><span>操作日志</span></a></li>
+                    <li><a href="{{ route('admin.auth.users.index') }}"><i class="fa fa-users"></i><span>管理员</span></a></li>
+                    <li><a href="{{ route('admin.nav.index') }}"><i class="fa fa-bars"></i><span>导航</span></a></li>
+                </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-history"></i><span>操作日志</span></a></li>
+            <li>
+                <a href="JavaScript:void(0)">
+                    <i class="fa fa-align-center"></i>
+                    <span>内容管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-bars"></i><span>分类</span></a></li>
                 </ul>
             </li>
         </ul>

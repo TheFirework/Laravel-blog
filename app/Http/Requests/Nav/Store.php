@@ -9,7 +9,7 @@ class Store extends Request
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:255',
+            'name'  => 'required|string|max:255|unique:navs',
             'url'   => 'required|string|url|max:255',
             'sort'  => 'required|between:0,9999|integer'
         ];

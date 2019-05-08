@@ -8,7 +8,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            菜单
+            导航
             <small>列表</small>
         </h1>
     </section>
@@ -144,7 +144,7 @@
                 var id = $(this).data('id');
                 // 调用 sweetalert
                 swal({
-                    title: "确认要删除该菜单？",
+                    title: "确认要删除该导航？",
                     icon: "warning",
                     buttons: ['取消', '确定'],
                     dangerMode: true,
