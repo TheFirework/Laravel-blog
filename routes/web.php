@@ -88,7 +88,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         //编辑分类视图
         Route::get('/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
         //更新分类
-        Route::get('/{category}', 'CategoryController@update')->name('admin.category.update');
+        Route::patch('/{category}', 'CategoryController@update')->name('admin.category.update');
         //删除分类
         Route::delete('/{nav}', 'CategoryController@destroy')->name('admin.category.destroy');
     });

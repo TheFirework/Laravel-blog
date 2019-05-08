@@ -44,9 +44,10 @@
                         <!-- /.box-tools -->
                     </div>
                     <div class="box-body">
-                        <form action="{{ route('admin.category.store') }}" class="form-horizontal"
+                        <form action="{{ route('admin.category.update',$category->id) }}" class="form-horizontal"
                               accept-charset="UTF-8" method="post">
                             {{ csrf_field() }}
+                            {{ method_field('patch') }}
                             <div class="box-body fields-group">
                                 <div class="form-group  ">
                                     <label for="parent_id" class="col-sm-2  control-label">Parent id</label>
@@ -56,7 +57,7 @@
                                                 style="width: 100%;" name="pid" data-value="" tabindex="-1"
                                                 aria-hidden="true">
                                             @foreach( $categories as $cate)
-                                                <option value="{{ $cate['id'] }}" @if($category->id === $cate['id']) selected="selected" @endif>
+                                                <option value="{{ $cate['id'] }}" @if($category->pid === $cate['id']) selected="selected" @endif>
                                                     @if($cate['level'] === 1)
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                                     @elseif($category['level'] === 2)
@@ -65,7 +66,7 @@
                                                     {{ $cate['name'] }}</option>
                                                 @if($cate['_child'])
                                                     @foreach( $cate['_child'] as $children)
-                                                        <option value="{{ $children['id'] }}" @if($category->id === $children['id']) selected="selected" @endif>
+                                                        <option value="{{ $children['id'] }}" @if($category->pid === $children['id']) selected="selected" @endif>
                                                             @if($children['level'] === 1)
                                                                 &nbsp;&nbsp;&nbsp;
                                                             @elseif($children['level'] === 2)

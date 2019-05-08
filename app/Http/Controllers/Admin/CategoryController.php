@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Category\Store;
+use App\Http\Requests\Category\Update;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,9 +51,15 @@ class CategoryController extends Controller
         return view('admin/category/edit',compact('category','categories'));
     }
 
-    public function update(Category $category,Request $request)
+    public function update(Category $category,Update $request)
     {
+        $data = $request->all();
 
+        $category->update($data);
+
+        MyFlash::success('分类更新');
+
+        return redirect('admin/category/index');
     }
 
     public function destroy($id)
