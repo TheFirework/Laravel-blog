@@ -19,6 +19,14 @@
                 <div class="box">
                     <div class="box-header">
                         <div class="btn-group">
+                            <a class="btn btn-primary btn-sm tree-tools" data-action="expand" title="展开">
+                                <i class="fa fa-plus-square-o"></i><span class="hidden-xs">&nbsp;展开</span>
+                            </a>
+                            <a class="btn btn-primary btn-sm tree-tools" data-action="collapse" title="收起">
+                                <i class="fa fa-minus-square-o"></i><span class="hidden-xs">&nbsp;收起</span>
+                            </a>
+                        </div>
+                        <div class="btn-group">
                             <a class="btn btn-warning btn-sm " href="{{ route('admin.category.index') }}" title="刷新">
                                 <i class="fa fa-refresh"></i>
                                 <span class="hidden-xs">&nbsp;刷新</span>
@@ -31,7 +39,7 @@
                         </div>
                     </div>
                     <div class="box-body table-responsive no-padding">
-                        <div class="dd" id="tree-">
+                        <div class="dd" id="tree">
                             <ol class="dd-list">
                                 @foreach($categories as $category)
                                 <li class="dd-item" data-id="{{ $category['id'] }}">
@@ -42,20 +50,31 @@
                                             <a href="javascript:void(0);" data-id="{{ $category['id'] }}" class="tree_branch_delete"><i class="fa fa-trash"></i></a>
                                         </span>
                                     </div>
-                                </li>
                                     @if($category['_child'])
                                         @foreach($category['_child'] as $children)
-                                            <li class="da-item" data-id="{{ $children['id'] }}">
-                                                <div class="dd-handle" style="margin-left: 40px">
-                                                    {{ $children['sort'] }} - {{ $children['name'] }}
-                                                    <span class="pull-right dd-nodrag">
-                                                            <a href="{{ route('admin.category.edit',$children['id']) }}"><i class="fa fa-edit"></i></a>
-                                                            <a href="javascript:void(0);" data-id="{{ $children['id'] }}" class="tree_branch_delete"><i class="fa fa-trash"></i></a>
+                                            <ol class="da-list" >
+                                                <li class="dd-item" data-id="{{ $children['id'] }}">
+                                                    <div class="dd-handle">
+                                                        {{ $children['sort'] }} - {{ $children['name'] }}
+                                                         <span class="pull-right dd-nodrag">
+                                                                <a href="{{ route('admin.category.edit',$children['id']) }}"><i class="fa fa-edit"></i></a>
+                                                                <a href="javascript:void(0);" data-id="{{ $children['id'] }}" class="tree_branch_delete">
+                                                                    <i class="fa fa-trash"></i>
+                                                                </a>
                                                         </span>
-                                                </div>
-                                            </li>
+                                                    </div>
+                                                </li>
+                                            </ol>
                                         @endforeach
-                                    @endif
+                                     @endif
+                                    </li>
+                                    {{--@if($category['_child'])--}}
+                                        {{--<ol class="dd-list" style="">--}}
+                                        {{--@foreach($category['_child'] as $children)--}}
+                                            {{--<li class="dd-item" data-id="{{ $children['id'] }}"><div class="dd-handle">{{ $children['sort'] }} - {{ $children['name'] }}</div></li>--}}
+                                        {{--@endforeach--}}
+                                        {{--</ol>--}}
+                                    {{--@endif--}}
                                  @endforeach
                             </ol>
                         </div>
@@ -70,6 +89,21 @@
     <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
     <script>
         $(function () {
+            //初始化菜单栏
+            $('#tree').nestable([]);
+
+            //切换折叠
+            $('.tree-tools').on('click', function(e){
+                var target = $(this),
+                    action = target.data('action');
+                if (action === 'expand') {
+                    $('.dd').nestable('expandAll');
+                }
+                if (action === 'collapse') {
+                    $('.dd').nestable('collapseAll');
+                }
+            });
+
             $('.tree_branch_delete').click(function() {
                 var id = $(this).data('id');
 

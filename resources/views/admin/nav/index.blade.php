@@ -138,6 +138,7 @@
     <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
     <script>
         $(document).ready(function () {
+
             // 删除按钮点击事件
             $('.btn-del-nav').click(function () {
                 // 获取按钮上 data-id 属性的值，也就是地址 ID

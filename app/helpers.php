@@ -20,8 +20,14 @@ if (!function_exists('plural_from_model')) {
     }
 }
 
+/**
+ *  一维数组转化为树形结构
+ *
+ * 此方法只转化2层结构
+ *
+ */
 if (!function_exists('array_to_tree')) {
-    function array_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root = 0,$level =1)
+    function array_to_tree($list, $pk = 'id', $pid = 'pid', $child = '_child', $root = 0, $level = 1)
     {
         // 创建Tree
         $tree = array();
@@ -42,7 +48,7 @@ if (!function_exists('array_to_tree')) {
                 } else {
                     if (isset($refer[$parentId])) {
                         $parent =& $refer[$parentId];
-                        $list[$key]['level'] = $level+1;
+                        $list[$key]['level'] = $level + 1;
                         $parent[$child][] =& $list[$key];
                     }
                 }

@@ -45,6 +45,17 @@ class CategoriesTableSeeder extends Seeder
                 'updated_at' => '2019-4-30 16:39:12',
                 'deleted_at' => null
             ],
+            [
+                'id'=>4,
+                'name'=>'Laravel',
+                'keywords'=>'Laravel,web,PHP',
+                'description'=>'为 WEB 艺术家创造的 PHP 框架。',
+                'sort'=>1,
+                'pid'=>1,
+                'created_at' => '2019-4-30 19:39:12',
+                'updated_at' => '2019-4-30 16:39:12',
+                'deleted_at' => null
+            ],
         ]);
     }
 }
