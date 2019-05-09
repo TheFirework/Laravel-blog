@@ -11,14 +11,15 @@
     <link href="{{ mix('css/laravel-admin.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset("laravel-admin/font-awesome/css/font-awesome.min.css") }}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/AdminLTE.min.css") }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/_all-skins.min.css") }}">
+{{--    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/_all-skins.min.css") }}">--}}
+    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/skin-blue-light.css") }}">
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/square/blue.css") }}">
     <link rel="stylesheet" href="{{ asset('laravel-admin/nprogress/nprogress.css') }}">
     <link rel="stylesheet" href="{{ asset('laravel-admin/nestable/nestable.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/AdminLTE.min.css") }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -14,21 +14,20 @@ $('.btn-dropbox').on('click',function () {
 
 $(function () {
     $('.sidebar-menu li:not(.treeview) > a').on('click', function () {
-        var $parent = $(this).parent().addClass('active');
+
+        if ($(this).parent().hasClass('active')) {
+            var $parent = $(this).parent().removeClass('active');
+        }else{
+            var $parent = $(this).parent().addClass('active');
+        }
         $parent.siblings('.treeview.active').find('> a').trigger('click');
         $parent.siblings().removeClass('active').find('li').removeClass('active');
     });
-    var menu = $('.sidebar-menu li > a[href="' + (location.pathname + location.search + location.hash) + '"]').parent().addClass('active');
+    var menu = $('.sidebar-menu li > a[href="' + (location.href) + '"]').parent().addClass('active');
     menu.parents('ul.treeview-menu').addClass('menu-open');
     menu.parents('li.treeview').addClass('active');
 
     // $('[data-toggle="popover"]').popover();
-
-    //整页刷新时，菜单显示
-    var selector = $('.sidebar-menu').find('a[href="/'+ location.pathname + location.search + location.hash +'"]');
-    selector.parent().addClass('active');
-    selector.parents('ul.treeview-menu').css('display', 'block');
-    selector.parents('li.treeview').addClass('menu-open');
 });
 
 

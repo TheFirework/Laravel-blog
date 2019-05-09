@@ -26,22 +26,22 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">菜单</li>
-            <li>
+            <li >
                 <a href="{{ route('admin.index.index') }}">
                     <i class="fa fa-home">
                     </i>
                     <span>首页</span>
                 </a>
             </li>
-            <li>
+            <li >
                 <a href="{{ route('admin.index.dashboard') }}">
                     <i class="fa fa-tachometer">
                     </i>
                     <span>仪表盘</span>
                 </a>
             </li>
-            <li>
-                <a href="JavaScript:void(0)">
+            <li >
+                <a href="javascript:void(0);">
                     <i class="fa fa-tasks"></i>
                     <span>系统管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -51,9 +51,9 @@
                     <li><a href="{{ route('admin.nav.index') }}"><i class="fa fa-bars"></i><span>导航</span></a></li>
                 </ul>
             </li>
-            <li><a href="#"><i class="fa fa-history"></i><span>操作日志</span></a></li>
-            <li>
-                <a href="JavaScript:void(0)">
+            <li ><a href="#"><i class="fa fa-history"></i><span>操作日志</span></a></li>
+            <li >
+                <a href="JavaScript:void(0);">
                     <i class="fa fa-align-center"></i>
                     <span>内容管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
