@@ -16,8 +16,9 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/_all-skins.min.css") }}">
-
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/square/blue.css") }}">
+    <link rel="stylesheet" href="{{ asset('laravel-admin/nprogress/nprogress.css') }}">
+    <link rel="stylesheet" href="{{ asset('laravel-admin/nestable/nestable.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,10 +32,10 @@
 <div class="wrapper" id="app" >
     @include('admin.layouts._header')
     @include('admin.layouts._slidebar')
-    <div class="content-wrapper">
+    <div class="content-wrapper" id="pjax-container" style="min-height: 1000px;">
         @yield('content')
     </div>
-    @include('admin.layouts._footer')
+    {{--@include('admin.layouts._footer')--}}
 </div>
 <!-- JS 脚本 -->
 <script>
@@ -43,19 +44,27 @@
 </script>
 <script src="{{ mix("js/laravel-admin.js")}}"></script>
 <script src="{{ asset('laravel-admin/AdminLTE/dist/js/adminlte.min.js') }}"></script>
+<script src="{{ asset('laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('laravel-admin/jquery-pjax/jquery.pjax.js') }}"></script>
+<script src="{{ asset('laravel-admin/nprogress/nprogress.js') }}"></script>
 <script src="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js")}}"></script>
+<script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
+<script src="{{ asset("laravel-admin/admin-base.js")}}"></script>
 
 @include('myflash::notification')
 <script>
-    $('input').iCheck({
-        checkboxClass: 'icheckbox_square-blue',
-        radioClass: 'iradio_square-blue',
-        increaseArea: '20%' // optional
-    });
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
+    $(document).ready(function()
+    {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+        });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
     });
 </script>
 @yield('scriptAfterJs')

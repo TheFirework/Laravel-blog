@@ -14,7 +14,6 @@ $('.btn-dropbox').on('click',function () {
 
 $(function () {
     $('.sidebar-menu li:not(.treeview) > a').on('click', function () {
-        console.log(this);
         var $parent = $(this).parent().addClass('active');
         $parent.siblings('.treeview.active').find('> a').trigger('click');
         $parent.siblings().removeClass('active').find('li').removeClass('active');
@@ -23,5 +22,13 @@ $(function () {
     menu.parents('ul.treeview-menu').addClass('menu-open');
     menu.parents('li.treeview').addClass('active');
 
-    $('[data-toggle="popover"]').popover();
+    // $('[data-toggle="popover"]').popover();
+
+    //整页刷新时，菜单显示
+    var selector = $('.sidebar-menu').find('a[href="/'+ location.pathname + location.search + location.hash +'"]');
+    selector.parent().addClass('active');
+    selector.parents('ul.treeview-menu').css('display', 'block');
+    selector.parents('li.treeview').addClass('menu-open');
 });
+
+

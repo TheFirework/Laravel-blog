@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{ route('admin.auth.users.update',$user->id) }}" method="post" accept-charset="UTF-8"
+                    <form action="{{ route('admin.auth.users.update',$user->id) }}" method="post" accept-charset="UTF-8" pjax-container
                           class="form-horizontal" enctype="multipart/form-data">
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         {{ csrf_field() }}
@@ -187,7 +187,7 @@
 
 @section('scriptAfterJs')
     <script src="{{ asset('laravel-admin/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
-    <script>
+    <script data-exec-on-popstate>
         $(document).ready(function () {
 
             $("input.avatar").fileinput({

@@ -22,7 +22,7 @@
                         <h3 class="box-title">编辑</h3>
                         <div class="box-tools">
                             <div class="btn-group pull-right" style="margin-right: 5px">
-                                <a href="javascript:void(0);" class="btn btn-sm btn-danger btn-delete" data-id="{{ $nav->id }}" title="删除">
+                                <a href="javascript:void(0);" class="btn btn-sm btn-danger btn-delete" onclick="delete_nav(this)" data-id="{{ $nav->id }}" title="删除">
                                     <i class="fa fa-trash"></i><span class="hidden-xs">  删除</span>
                                 </a>
                             </div>
@@ -36,7 +36,7 @@
                         <!-- /.box-tools -->
                     </div>
                     <div class="box-body">
-                        <form action="{{ route('admin.nav.update',$nav->id) }}" class="form-horizontal" accept-charset="UTF-8" method="post">
+                        <form action="{{ route('admin.nav.update',$nav->id) }}" class="form-horizontal" accept-charset="UTF-8" method="post" pjax-container>
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
                             <div class="box-body fields-group">
@@ -154,40 +154,32 @@
 
 @section('scriptAfterJs')
     <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-            // 删除按钮点击事件
-            $('.btn-delete').click(function () {
-                // 获取按钮上 data-id 属性的值，也就是地址 ID
-                var id = $(this).data('id');
-                // 调用 sweetalert
-                swal({
-                    title: "确认要删除该导航？",
-                    icon: "warning",
-                    buttons: ['取消', '确定'],
-                    dangerMode: true,
-                })
-                    .then(function (willDelete) { // 用户点击按钮后会触发这个回调函数
-                        // 用户点击确定 willDelete 值为 true， 否则为 false
-                        // 用户点了取消，啥也不做
-                        if (!willDelete) {
-                            return;
-                        }
-                        // 调用删除接口，用 id 来拼接出请求的 url
-                        axios.post("/admin/nav/destroy/" + id)
-                            .then(function (response) {
-                                // 请求成功之后重新加载页面
-                                if (response['data']['code'] === 100) {
-                                    location.href="{{ route('admin.nav.index') }}";
-                                } else {
-                                    swal({
-                                        title: "删除失败，请稍后再试！",
-                                        icon: "warning",
-                                    });
-                                }
-                            })
-                    });
-            });
-        });
+    <script data-exec-on-popstate>
+        function delete_nav(obj) {
+            var id = $(obj).data('id');
+            swal({
+                title: "确认要删除该导航？",
+                icon: "warning",
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            })
+                .then(function (willDelete) {
+                    if (!willDelete) {
+                        return;
+                    }
+                    axios.post("/admin/nav/destroy/" + id)
+                        .then(function (response) {
+                            // 请求成功之后重新加载页面
+                            if (response['data']['code'] === 100) {
+                                location.href = "{{ route('admin.nav.index') }}";
+                            } else {
+                                swal({
+                                    title: "删除失败，请稍后再试！",
+                                    icon: "warning",
+                                });
+                            }
+                        })
+                });
+        }
     </script>
 @endsection

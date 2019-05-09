@@ -56,7 +56,7 @@
                             </span>
                     </div>
                     <div class="box-header with-border hide" id="filter-box">
-                        <form action="{{ route('admin.auth.users.index') }}" class="form-horizontal" method="get">
+                        <form action="{{ route('admin.auth.users.index') }}" class="form-horizontal" method="get" pjax-container>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="box-body">
@@ -135,7 +135,7 @@
                                             <a href="{{ route('admin.auth.users.edit',$user->id) }}">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <a href="javascript:void(0)" class="btn-del-user" data-id="{{ $user->id }}">
+                                            <a href="javascript:void(0)" class="btn-del-user" onclick="delete_user(this)" data-id="{{ $user->id }}">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         @endif
@@ -156,40 +156,32 @@
 @endsection
 
 @section('scriptAfterJs')
-    <script>
-        $(document).ready(function() {
-            // 删除按钮点击事件
-            $('.btn-del-user').click(function() {
-                // 获取按钮上 data-id 属性的值，也就是地址 ID
-                var id = $(this).data('id');
-                // 调用 sweetalert
-                swal({
-                    title: "确认要删除该用户？",
-                    icon: "warning",
-                    buttons: ['取消', '确定'],
-                    dangerMode: true,
-                })
-                    .then(function(willDelete) { // 用户点击按钮后会触发这个回调函数
-                        // 用户点击确定 willDelete 值为 true， 否则为 false
-                        // 用户点了取消，啥也不做
-                        if (!willDelete) {
-                            return;
-                        }
-                        // 调用删除接口，用 id 来拼接出请求的 url
-                        axios.delete('/admin/auth/users/' + id)
-                            .then(function (response) {
-                                // 请求成功之后重新加载页面
-                                if (response['data']['code'] === 100){
-                                    location.reload();
-                                } else {
-                                    swal({
-                                        title: "删除失败，请稍后再试！",
-                                        icon: "warning",
-                                    });
-                                }
-                            })
-                    });
-            });
-        });
+    <script data-exec-on-popstate>
+        function delete_user(obj) {
+            var id = $(obj).data('id');
+            swal({
+                title: "确认要删除该用户？",
+                icon: "warning",
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            })
+                .then(function (willDelete) {
+                    if (!willDelete) {
+                        return;
+                    }
+                    axios.delete('/admin/auth/users/' + id)
+                        .then(function (response) {
+                            // 请求成功之后重新加载页面
+                            if (response['data']['code'] === 100) {
+                                location.reload();
+                            } else {
+                                swal({
+                                    title: "删除失败，请稍后再试！",
+                                    icon: "warning",
+                                });
+                            }
+                        })
+                });
+        }
     </script>
 @endsection

@@ -2,9 +2,6 @@
 
 @section('title', 'Laravel Blog')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('laravel-admin/nestable/nestable.css') }}">
-@endsection
 @section('content')
     <section class="content-header">
         <h1>
@@ -37,7 +34,7 @@
                                             <span class="pull-right dd-nodrag">
                                             <a href="{{ route('admin.nav.edit',$nav->id) }}"><i class="fa fa-edit"></i></a>
                                             <a href="javascript:void(0);" data-id="{{ $nav->id }}"
-                                               class="tree_branch_delete btn-del-nav"><i class="fa fa-trash"></i></a>
+                                               class="tree_branch_delete btn-del-nav" onclick="tree_branch_delete(this)"><i class="fa fa-trash"></i></a>
                                         </span>
                                         </div>
                                     </li>
@@ -56,7 +53,7 @@
                         <!-- /.box-tools -->
                     </div>
                     <div class="box-body">
-                        <form action="/admin/nav/store" class="form-horizontal" accept-charset="UTF-8" method="post">
+                        <form action="/admin/nav/index" class="form-horizontal" accept-charset="UTF-8" method="post" pjax-container>
                             {{ csrf_field() }}
                             <div class="box-body fields-group">
                                 <div class="form-group  {!! !$errors->has('name') ?: 'has-error' !!}">
@@ -135,42 +132,35 @@
 @endsection
 
 @section('scriptAfterJs')
-    <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
-    <script>
-        $(document).ready(function () {
-
-            // 删除按钮点击事件
-            $('.btn-del-nav').click(function () {
-                // 获取按钮上 data-id 属性的值，也就是地址 ID
-                var id = $(this).data('id');
-                // 调用 sweetalert
-                swal({
-                    title: "确认要删除该导航？",
-                    icon: "warning",
-                    buttons: ['取消', '确定'],
-                    dangerMode: true,
-                })
-                    .then(function (willDelete) { // 用户点击按钮后会触发这个回调函数
-                        // 用户点击确定 willDelete 值为 true， 否则为 false
-                        // 用户点了取消，啥也不做
-                        if (!willDelete) {
-                            return;
+    <script data-exec-on-popstate>
+        function tree_branch_delete(obj)
+        {
+            var id = $(obj).data('id');
+            swal({
+                title: "确认删除？",
+                icon: "warning",
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            })
+                .then(function (willDelete) {
+                    if (!willDelete) {
+                        return;
+                    }
+                    $.ajax({
+                        method: 'post',
+                        url: '/admin/nav/destroy/' + id,
+                        success: function (response) {
+                            if (response['code'] === 100) {
+                                $.pjax.reload('#pjax-container');
+                            } else {
+                                swal({
+                                    title: "删除失败，请稍后再试！",
+                                    icon: "warning",
+                                });
+                            }
                         }
-                        // 调用删除接口，用 id 来拼接出请求的 url
-                        axios.post("/admin/nav/destroy/" + id)
-                            .then(function (response) {
-                                // 请求成功之后重新加载页面
-                                if (response['data']['code'] === 100) {
-                                    location.reload();
-                                } else {
-                                    swal({
-                                        title: "删除失败，请稍后再试！",
-                                        icon: "warning",
-                                    });
-                                }
-                            })
                     });
-            });
-        });
+                });
+        }
     </script>
 @endsection

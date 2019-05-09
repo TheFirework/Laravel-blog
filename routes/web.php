@@ -68,7 +68,7 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         //导航列表
         Route::get('/index', 'NavController@index')->name('admin.nav.index');
         //新增导航
-        Route::post('/store', 'NavController@store')->name('admin.nav.store');
+        Route::post('/index', 'NavController@store')->name('admin.nav.index');
         //编辑导航视图
         Route::get('/{nav}/edit', 'NavController@edit')->name('admin.nav.edit');
         //更新导航

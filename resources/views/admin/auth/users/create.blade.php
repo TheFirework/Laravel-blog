@@ -33,7 +33,7 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{ url('admin/auth/users') }}" method="post" accept-charset="UTF-8"
+                    <form action="{{ url('admin/auth/users') }}" method="post" accept-charset="UTF-8" pjax-container
                           class="form-horizontal" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="box-body">
@@ -146,7 +146,7 @@
 
 @section('scriptAfterJs')
     <script src="{{ asset('laravel-admin/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
-    <script>
+    <script data-exec-on-popstate>
         $(document).ready(function () {
             var $avatar = $('#avatar'), initPlugin = function() {
                 $avatar.fileinput({

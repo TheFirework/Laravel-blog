@@ -39,7 +39,7 @@
                         <!-- /.box-tools -->
                     </div>
                     <div class="box-body">
-                        <form action="{{ route('admin.category.store') }}" class="form-horizontal"
+                        <form action="{{ route('admin.category.store') }}" class="form-horizontal" pjax-container
                               accept-charset="UTF-8" method="post">
                             {{ csrf_field() }}
                             <div class="box-body fields-group">
@@ -167,7 +167,7 @@
 
 @section('scriptAfterJs')
     <script src="{{ asset('laravel-admin/select2/js/select2.js') }}"></script>
-    <script>
+    <script data-exec-on-popstate>
         $(document).ready(function () {
             $(".parent_id").select2({"allowClear": true, "placeholder": "Parent id"});
         });

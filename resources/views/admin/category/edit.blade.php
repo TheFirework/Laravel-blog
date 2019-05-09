@@ -30,7 +30,7 @@
                         <h3 class="box-title">编辑</h3>
                         <div class="box-tools">
                             <div class="btn-group pull-right" style="margin-right: 5px">
-                                <a href="javascript:void(0);" class="btn btn-sm btn-danger btn-delete" data-id="{{ $category->id }}" title="删除">
+                                <a href="javascript:void(0);" class="btn btn-sm btn-danger btn-delete" onclick="delete_category(this)" data-id="{{ $category->id }}" title="删除">
                                     <i class="fa fa-trash"></i><span class="hidden-xs">  删除</span>
                                 </a>
                             </div>
@@ -44,7 +44,7 @@
                         <!-- /.box-tools -->
                     </div>
                     <div class="box-body">
-                        <form action="{{ route('admin.category.update',$category->id) }}" class="form-horizontal"
+                        <form action="{{ route('admin.category.update',$category->id) }}" class="form-horizontal" pjax-container
                               accept-charset="UTF-8" method="post">
                             {{ csrf_field() }}
                             {{ method_field('patch') }}
@@ -173,40 +173,36 @@
 
 @section('scriptAfterJs')
     <script src="{{ asset('laravel-admin/select2/js/select2.js') }}"></script>
-    <script>
+    <script data-exec-on-popstate>
+        function delete_category(obj) {
+            var id = $(obj).data('id');
+            swal({
+                title: "确认删除？",
+                icon: "warning",
+                buttons: ['取消', '确定'],
+                dangerMode: true,
+            })
+                .then(function (willDelete) {
+                    if (!willDelete) {
+                        return;
+                    }
+                    axios.delete("/admin/category/" + id)
+                        .then(function (response) {
+                            // 请求成功之后重新加载页面
+                            if (response['data']['code'] === 100) {
+                                location.href = "{{ route('admin.category.index') }}";
+                            } else {
+                                swal({
+                                    title: "删除失败，请稍后再试！",
+                                    icon: "warning",
+                                });
+                            }
+                        })
+                });
+        }
+
         $(document).ready(function () {
             $(".parent_id").select2({"allowClear": true, "placeholder": "Parent id"});
-
-            $('.btn-delete').click(function() {
-                var id = $(this).data('id');
-
-                swal({
-                    title: "确认删除？",
-                    icon: "warning",
-                    buttons: ['取消', '确定'],
-                    dangerMode: true,
-                })
-                    .then(function (willDelete) { // 用户点击按钮后会触发这个回调函数
-                        // 用户点击确定 willDelete 值为 true， 否则为 false
-                        // 用户点了取消，啥也不做
-                        if (!willDelete) {
-                            return;
-                        }
-                        // 调用删除接口，用 id 来拼接出请求的 url
-                        axios.delete("/admin/category/" + id)
-                            .then(function (response) {
-                                // 请求成功之后重新加载页面
-                                if (response['data']['code'] === 100) {
-                                    location.href="{{ route('admin.category.index') }}";
-                                } else {
-                                    swal({
-                                        title: "删除失败，请稍后再试！",
-                                        icon: "warning",
-                                    });
-                                }
-                            })
-                    });
-            });
         });
     </script>
 @endsection
