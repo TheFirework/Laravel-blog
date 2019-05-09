@@ -93,7 +93,7 @@
                 $('.dd').nestable('collapseAll');
             }
         }
-        
+
         function tree_branch_delete(obj)
         {
             var id = $(obj).data('id');
