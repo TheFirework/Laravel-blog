@@ -3,13 +3,24 @@ require('./bootstrap');
 require('sweetalert');
 
 // 全局数据表格 筛选控制隐藏显示状态
-$('.btn-dropbox').on('click',function () {
+// $('.btn-dropbox').on('click',function (e) {
+//     e.preventDefault();
+//     if ($('#filter-box').hasClass('hide')) {
+//         $('#filter-box').removeClass('hide');
+//     } else {
+//         $('#filter-box').addClass('hide');
+//     }
+// });
+
+function screenBox()
+{
     if ($('#filter-box').hasClass('hide')) {
         $('#filter-box').removeClass('hide');
     } else {
         $('#filter-box').addClass('hide');
     }
-});
+};
+
 
 
 $(function () {

@@ -92,4 +92,26 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
         //删除分类
         Route::delete('/{nav}', 'CategoryController@destroy')->name('admin.category.destroy');
     });
+
+    //标签管理
+    Route::prefix('tag')->group(function (){
+       //标签列表
+        Route::get('/index','TagController@index')->name('admin.tag.index');
+        //新增标签视图
+        Route::get('/create','TagController@create')->name('admin.tag.create');
+        //新增标签
+        Route::post('/','TagController@store')->name('admin.tag.store');
+        //编辑标签视图
+        Route::get('/{tag}/edit','TagController@edit')->name('admin.tag.edit');
+        //更新标签
+        Route::patch('/{tag}','TagController@update')->name('admin.tag.update');
+        //删除分类
+        Route::delete('/{tag}', 'TagController@destroy')->name('admin.tag.destroy');
+    });
+
+    //文章管理
+    Route::prefix('article')->group(function (){
+        //文章列表
+    });
+
 });

@@ -48,12 +48,12 @@
                         </div>
                         <span>
                                 <a class="btn btn-sm btn-primary grid-refresh" href="{{ route('admin.auth.users.index') }}" title="刷新"><i class="fa fa-refresh"></i><span class="hidden-xs"> 刷新</span></a>
-                                <div class="btn-group" style="margin-right: 10px" data-toggle="buttons">
+                                <div class="btn-group" style="margin-right: 10px" data-toggle="buttons" onclick="screenBox()">
                                     <label class="btn btn-sm btn-dropbox" title="筛选">
                                         <i class="fa fa-filter"></i><span class="hidden-xs">&nbsp;&nbsp;筛选</span>
                                     </label>
                                 </div>
-                            </span>
+                        </span>
                     </div>
                     <div class="box-header with-border hide" id="filter-box">
                         <form action="{{ route('admin.auth.users.index') }}" class="form-horizontal" method="get" pjax-container>
@@ -173,7 +173,7 @@
                         .then(function (response) {
                             // 请求成功之后重新加载页面
                             if (response['data']['code'] === 100) {
-                                location.reload();
+                                $.pjax.reload('#pjax-container');
                             } else {
                                 swal({
                                     title: "删除失败，请稍后再试！",

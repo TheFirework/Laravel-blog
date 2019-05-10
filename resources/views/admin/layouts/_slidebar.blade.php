@@ -60,6 +60,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-bars"></i><span>分类</span></a></li>
+                    <li><a href="{{ route('admin.tag.index') }}"><i class="fa fa-tags"></i><span>标签</span></a></li>
                 </ul>
             </li>
         </ul>

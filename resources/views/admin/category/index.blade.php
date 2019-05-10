@@ -114,7 +114,7 @@
                         url: "/admin/category/" + id
                     }).done(function(response) {
                         if (response['code'] === 100) {
-                            location.href="{{ route('admin.category.index') }}";
+                            $.pjax.reload('#pjax-container');
                         } else {
                             swal({
                                 title: "删除失败，请稍后再试！",

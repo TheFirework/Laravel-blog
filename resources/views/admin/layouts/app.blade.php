@@ -42,6 +42,14 @@
 <script>
     function LA() {}
     LA.token = "{{ csrf_token() }}";
+    function screenBox()
+    {
+        if ($('#filter-box').hasClass('hide')) {
+            $('#filter-box').removeClass('hide');
+        } else {
+            $('#filter-box').addClass('hide');
+        }
+    };
 </script>
 <script src="{{ mix("js/laravel-admin.js")}}"></script>
 <script src="{{ asset('laravel-admin/AdminLTE/dist/js/adminlte.min.js') }}"></script>
