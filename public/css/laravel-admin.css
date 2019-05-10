@@ -8401,7 +8401,23 @@ a.editable-empty {
   height: 160px;
 }
 
+.kv-file-content img {
+  width: 100%;
+}
+
 .kv-file-remove {
   display: none;
+}
+
+.is_top_margin_left {
+  margin-left: 15px;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-selection .select2-selection--single {
+  border: 1px solid #d2d6de;
+  border-radius: 0;
+  padding: 6px 12px;
+  height: 34px;
 }
 

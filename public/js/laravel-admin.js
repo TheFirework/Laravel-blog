@@ -32323,23 +32323,17 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 __webpack_require__("./node_modules/sweetalert/dist/sweetalert.min.js");
 
-// 全局数据表格 筛选控制隐藏显示状态
-// $('.btn-dropbox').on('click',function (e) {
-//     e.preventDefault();
-//     if ($('#filter-box').hasClass('hide')) {
-//         $('#filter-box').removeClass('hide');
-//     } else {
-//         $('#filter-box').addClass('hide');
-//     }
-// });
-
-function screenBox() {
-    if ($('#filter-box').hasClass('hide')) {
-        $('#filter-box').removeClass('hide');
-    } else {
-        $('#filter-box').addClass('hide');
-    }
-};
+$(document).ready(function () {
+    // 全局数据表格 筛选控制隐藏显示状态
+    $('.btn-search').on('click', function (e) {
+        e.preventDefault();
+        if ($('#filter-box').hasClass('hide')) {
+            $('#filter-box').removeClass('hide');
+        } else {
+            $('#filter-box').addClass('hide');
+        }
+    });
+});
 
 $(function () {
     $('.sidebar-menu li:not(.treeview) > a').on('click', function () {

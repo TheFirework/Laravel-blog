@@ -13,7 +13,7 @@ class UpdateUser extends Request
     {
         return [
             'email' => 'required|email|max:255|unique:users,email,'.$this->route('user')->id,
-            'name'  => 'required|string|max:255|regex:/^[A-Za-z0-9\-\_]+$/',
+            'name'  => 'required|string|max:255',
             'avatar' => 'mimes:jpeg,bmp,png,gif',
             'password' => 'required|confirmed|string|min:6',
             'password_confirmation' => 'required'
@@ -24,7 +24,6 @@ class UpdateUser extends Request
     {
         return [
             'avatar.mimes' =>'头像必须是 jpeg, bmp, png, gif 格式的图片',
-            'name.regex' => '用户名只支持英文、数字、横杆和下划线。',
         ];
     }
 

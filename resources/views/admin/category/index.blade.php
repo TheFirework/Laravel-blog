@@ -76,10 +76,6 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('scriptAfterJs')
-    <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
     <script data-exec-on-popstate>
         //切换折叠
         function switchTree(obj)
@@ -114,7 +110,7 @@
                         url: "/admin/category/" + id
                     }).done(function(response) {
                         if (response['code'] === 100) {
-                            $.pjax.reload('#pjax-container');
+                            location.href="{{ route('admin.category.index') }}";
                         } else {
                             swal({
                                 title: "删除失败，请稍后再试！",
@@ -131,4 +127,7 @@
             $('#tree').nestable([]);
         });
     </script>
+@endsection
+
+@section('scriptAfterJs')
 @endsection

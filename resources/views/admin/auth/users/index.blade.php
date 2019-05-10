@@ -48,7 +48,7 @@
                         </div>
                         <span>
                                 <a class="btn btn-sm btn-primary grid-refresh" href="{{ route('admin.auth.users.index') }}" title="刷新"><i class="fa fa-refresh"></i><span class="hidden-xs"> 刷新</span></a>
-                                <div class="btn-group" style="margin-right: 10px" data-toggle="buttons" onclick="screenBox()">
+                                <div class="btn-group btn-search" style="margin-right: 10px" data-toggle="buttons">
                                     <label class="btn btn-sm btn-dropbox" title="筛选">
                                         <i class="fa fa-filter"></i><span class="hidden-xs">&nbsp;&nbsp;筛选</span>
                                     </label>
@@ -145,17 +145,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.box-body -->
                     {{ $users->links('vendor.pagination.page') }}
                 </div>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
-@endsection
-
-@section('scriptAfterJs')
     <script data-exec-on-popstate>
         function delete_user(obj) {
             var id = $(obj).data('id');
@@ -173,7 +167,7 @@
                         .then(function (response) {
                             // 请求成功之后重新加载页面
                             if (response['data']['code'] === 100) {
-                                $.pjax.reload('#pjax-container');
+                                location.href="{{ route('admin.auth.users.index') }}";
                             } else {
                                 swal({
                                     title: "删除失败，请稍后再试！",
@@ -184,4 +178,7 @@
                 });
         }
     </script>
+@endsection
+
+@section('scriptAfterJs')
 @endsection

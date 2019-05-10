@@ -1,10 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Laravel Blog')
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('laravel-admin/nestable/nestable.css') }}">
-@endsection
 @section('content')
     <section class="content-header">
         <h1>
@@ -146,14 +142,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
-@endsection
-
-@section('scriptAfterJs')
-    <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
     <script data-exec-on-popstate>
         function delete_nav(obj) {
             var id = $(obj).data('id');
@@ -182,4 +172,7 @@
                 });
         }
     </script>
+@endsection
+
+@section('scriptAfterJs')
 @endsection

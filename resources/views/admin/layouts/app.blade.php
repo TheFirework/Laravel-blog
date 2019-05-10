@@ -2,24 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Laravel Blog') - 后台管理</title>
 
-    <link href="{{ mix('css/laravel-admin.css') }}" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset("laravel-admin/font-awesome/css/font-awesome.min.css") }}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-{{--    <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/_all-skins.min.css") }}">--}}
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/skins/skin-blue-light.css") }}">
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/square/blue.css") }}">
     <link rel="stylesheet" href="{{ asset('laravel-admin/nprogress/nprogress.css') }}">
     <link rel="stylesheet" href="{{ asset('laravel-admin/nestable/nestable.css') }}">
-    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('laravel-admin/editormd/css/editormd.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset("laravel-admin/bootstrap-fileinput/css/fileinput.min.css") }}">
+    <link rel="stylesheet" href="{{ asset('laravel-admin/select2/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('laravel-admin/nestable/nestable.css') }}">
     <link rel="stylesheet" href="{{ asset("laravel-admin/AdminLTE/dist/css/AdminLTE.min.css") }}">
+    <link href="{{ mix('css/laravel-admin.css') }}" rel="stylesheet">
+    <script src="{{ mix("js/laravel-admin.js")}}"></script>
+    <script src="{{ asset('laravel-admin/AdminLTE/dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -42,23 +44,17 @@
 <script>
     function LA() {}
     LA.token = "{{ csrf_token() }}";
-    function screenBox()
-    {
-        if ($('#filter-box').hasClass('hide')) {
-            $('#filter-box').removeClass('hide');
-        } else {
-            $('#filter-box').addClass('hide');
-        }
-    };
 </script>
-<script src="{{ mix("js/laravel-admin.js")}}"></script>
-<script src="{{ asset('laravel-admin/AdminLTE/dist/js/adminlte.min.js') }}"></script>
-<script src="{{ asset('laravel-admin/AdminLTE/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+
 <script src="{{ asset('laravel-admin/jquery-pjax/jquery.pjax.js') }}"></script>
 <script src="{{ asset('laravel-admin/nprogress/nprogress.js') }}"></script>
 <script src="{{ asset("laravel-admin/AdminLTE/plugins/iCheck/icheck.min.js")}}"></script>
 <script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
-<script src="{{ asset("laravel-admin/admin-base.js")}}"></script>
+{{--<script src="{{ asset("laravel-admin/admin-base.js")}}"></script>--}}
+<script src="{{ asset('laravel-admin/editormd/editormd.min.js') }}"></script>
+<script src="{{ asset('laravel-admin/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
+<script src="{{ asset('laravel-admin/select2/js/select2.js') }}"></script>
+<script src="{{ asset('laravel-admin/nestable/jquery.nestable.js') }}"></script>
 
 @include('myflash::notification')
 <script>
@@ -66,9 +62,11 @@
     {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
+            // radioClass: 'iradio_minimal-blue',
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

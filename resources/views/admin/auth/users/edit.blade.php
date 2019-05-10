@@ -2,10 +2,6 @@
 
 @section('title', 'Laravel Blog')
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset("laravel-admin/bootstrap-fileinput/css/fileinput.min.css") }}">
-@endsection
-
 @section('content')
     <section class="content-header">
         <h1>
@@ -98,7 +94,7 @@
                                             @endforeach
                                         @endif
                                         <input type="file" class="file avatar" name="avatar"
-                                               data-initial-preview="<img src='{{ $user->avatar }}' class='file-preview-image'>"
+                                               data-initial-preview="<img  src='{{ $user->avatar }}' />" class='file-preview-image'
                                                data-initial-caption="{{ $user->avatar }}"
                                                data-show-upload="false"
                                         />
@@ -186,7 +182,6 @@
 @endsection
 
 @section('scriptAfterJs')
-    <script src="{{ asset('laravel-admin/bootstrap-fileinput/js/fileinput.min.js') }}"></script>
     <script data-exec-on-popstate>
         $(document).ready(function () {
 

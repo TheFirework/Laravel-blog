@@ -1,18 +1,6 @@
 @extends('admin.layouts.app')
 
 @section('title', 'Laravel Blog')
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('laravel-admin/select2/css/select2.css') }}">
-    <style>
-        .select2-container--default .select2-selection--single, .select2-selection .select2-selection--single {
-            border: 1px solid #d2d6de;
-            border-radius: 0;
-            padding: 6px 12px;
-            height: 34px;
-        }
-    </style>
-@endsection
 @section('content')
     <section class="content-header">
         <h1>
@@ -165,14 +153,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
-@endsection
-
-@section('scriptAfterJs')
-    <script src="{{ asset('laravel-admin/select2/js/select2.js') }}"></script>
     <script data-exec-on-popstate>
         function delete_category(obj) {
             var id = $(obj).data('id');
@@ -205,4 +187,8 @@
             $(".parent_id").select2({"allowClear": true, "placeholder": "Parent id"});
         });
     </script>
+@endsection
+
+
+@section('scriptAfterJs')
 @endsection

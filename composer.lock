@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ee5e48a18f645e5c63f37c2986d5078",
+    "content-hash": "583cc675e66891e1a787dff42e25fd3d",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1047,6 +1047,48 @@
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
+            "name": "joyqi/hyper-down",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SegmentFault/HyperDown.git",
+                "reference": "30d1ececb5dfac6829561fd6f05bec39276d3569"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SegmentFault/HyperDown/zipball/30d1ececb5dfac6829561fd6f05bec39276d3569",
+                "reference": "30d1ececb5dfac6829561fd6f05bec39276d3569",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HyperDown\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "joyqi",
+                    "email": "joyqi@segmentfault.com"
+                }
+            ],
+            "description": "A light weight markdown parser library",
+            "time": "2018-08-13T09:00:41+00:00"
+        },
+        {
             "name": "justinrainbow/json-schema",
             "version": "5.2.8",
             "source": {
@@ -1461,6 +1503,76 @@
                 "storage"
             ],
             "time": "2019-03-30T13:22:34+00:00"
+        },
+        {
+            "name": "league/html-to-markdown",
+            "version": "4.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/html-to-markdown.git",
+                "reference": "250d1bf45f80d15594fb6b316df777d6d4c97ad1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/html-to-markdown/zipball/250d1bf45f80d15594fb6b316df777d6d4c97ad1",
+                "reference": "250d1bf45f80d15594fb6b316df777d6d4c97ad1",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xml": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "mikehaertl/php-shellcommand": "~1.1.0",
+                "phpunit/phpunit": "4.*",
+                "scrutinizer/ocular": "~1.1"
+            },
+            "bin": [
+                "bin/html-to-markdown"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\HTMLToMarkdown\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nick Cernis",
+                    "email": "nick@cern.is",
+                    "homepage": "http://modernnerd.net",
+                    "role": "Original Author"
+                },
+                {
+                    "name": "Colin O'Dell",
+                    "email": "colinodell@gmail.com",
+                    "homepage": "https://www.colinodell.com",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "An HTML-to-markdown conversion helper for PHP",
+            "homepage": "https://github.com/thephpleague/html-to-markdown",
+            "keywords": [
+                "html",
+                "markdown"
+            ],
+            "time": "2018-12-24T17:21:44+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -5968,7 +6080,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "joyqi/hyper-down": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -55,10 +55,11 @@
             <li >
                 <a href="JavaScript:void(0);">
                     <i class="fa fa-align-center"></i>
-                    <span>内容管理</span>
+                    <span>文章管理</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="{{ route('admin.article.index') }}"><i class="fa fa-file-pdf-o"></i><span>文章</span></a></li>
                     <li><a href="{{ route('admin.category.index') }}"><i class="fa fa-bars"></i><span>分类</span></a></li>
                     <li><a href="{{ route('admin.tag.index') }}"><i class="fa fa-tags"></i><span>标签</span></a></li>
                 </ul>

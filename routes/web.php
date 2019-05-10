@@ -112,6 +112,21 @@ Route::namespace('Admin')->prefix('admin')->middleware('admin.auth')->group(func
     //文章管理
     Route::prefix('article')->group(function (){
         //文章列表
+        Route::get('/index','ArticleController@index')->name('admin.article.index');
+        //文章新增视图
+        Route::get('/create','ArticleController@create')->name('admin.article.create');
+        //文章显示
+        Route::get('/show/{article}','ArticleController@show')->name('admin.article.show');
+        //新增文章
+        Route::post('/index','ArticleController@store')->name('admin.article.store');
+        //文章编辑视图
+        Route::get('/{article}/edit','ArticleController@edit')->name('admin.article.edit');
+        //文章更新
+        Route::patch('/{article}','ArticleController@update')->name('admin.article.update');
+        //文章删除
+        Route::delete('/{article}', 'ArticleController@destroy')->name('admin.article.destroy');
+        //文章上传图片
+        Route::post('/uploadImage', 'ArticleController@uploadImage')->name('admin.article.uploadImage');
     });
 
 });

@@ -116,9 +116,6 @@
             </div>
         </div>
     </section>
-@endsection
-
-@section('scriptAfterJs')
     <script data-exec-on-popstate>
         function delete_tag(obj)
         {
@@ -138,7 +135,7 @@
                         url: "/admin/tag/" + id
                     }).done(function(response) {
                         if (response['code'] === 100) {
-                            $.pjax.reload('#pjax-container');
+                            location.href="{{ route('admin.tag.index') }}";
                         } else {
                             swal({
                                 title: "删除失败，请稍后再试！",
@@ -155,4 +152,7 @@
             $('#tree').nestable([]);
         });
     </script>
+@endsection
+
+@section('scriptAfterJs')
 @endsection

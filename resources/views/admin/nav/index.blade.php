@@ -125,14 +125,12 @@
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
 @endsection
 
 @section('scriptAfterJs')
-    <script data-exec-on-popstate>
+    <script data-exec-on-popstate charset="UTF-8">
         function tree_branch_delete(obj)
         {
             var id = $(obj).data('id');
@@ -151,7 +149,7 @@
                         url: '/admin/nav/destroy/' + id,
                         success: function (response) {
                             if (response['code'] === 100) {
-                                $.pjax.reload('#pjax-container');
+                                location.href="{{ route('admin.nav.index') }}";
                             } else {
                                 swal({
                                     title: "删除失败，请稍后再试！",

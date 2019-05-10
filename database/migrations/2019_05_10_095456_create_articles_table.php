@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('title')->default('')->comment('标题');
             $table->string('author')->default('')->comment('作者');
             $table->mediumText('markdown')->comment('markdown文章内容');
-            $table->mediumText('html')->comment('markdown转的html页面');
+            $table->mediumText('body')->comment('markdown转的html页面');
             $table->string('description')->default('')->comment('描述');
             $table->string('keywords')->default('')->comment('关键词');
             $table->string('cover')->default('')->comment('封面图');
