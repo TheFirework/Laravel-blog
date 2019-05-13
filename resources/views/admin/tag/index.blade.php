@@ -84,7 +84,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>名称</th>
-                                <th>文章数</th>
                                 <th>创建时间</th>
                                 <th>更新时间</th>
                                 <th>操作</th>
@@ -95,7 +94,6 @@
                                 <tr>
                                     <td> {{ $tag->id }} </td>
                                     <td> {{ $tag->name }} </td>
-                                    <td> {{ $tag->article_count }} </td>
                                     <td> {{ $tag->created_at }} </td>
                                     <td> {{ $tag->updated_at }}</td>
                                     <td>

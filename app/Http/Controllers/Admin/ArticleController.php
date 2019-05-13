@@ -140,20 +140,30 @@ class ArticleController extends Controller
      */
     public function uploadImage(ImageUploadHandler $uploader,Request $request)
     {
-//        $result = Upload::file('editormd-image-file', 'uploads/article');
-//        if ($result['status_code'] === 200) {
-//            $data = [
-//                'success' => 1,
-//                'message' => $result['message'],
-//                'url'     => $result['data'][0]['path'],
-//            ];
-//        } else {
-//            $data = [
-//                'success' => 0,
-//                'message' => $result['message'],
-//                'url'     => '',
-//            ];
-//        }
-        return response()->json($request->file('editormd-image-file'));
+        if ($request->hasFile('editormd-image-file')){
+            $result = $uploader->save($request->file('editormd-image-file'),'markdown','markdown');
+            if ($result) {
+                $data = [
+                    'success' => 1,
+                    'message' => '图片上传成功',
+                    'url'     => $result['path'],
+                ];
+
+            } else {
+                $data = [
+                    'success' => 0,
+                    'message' => '上传图片失败',
+                    'url'     => '',
+                ];
+            }
+            return response()->json($data);
+        } else {
+            return response()->json([
+                'success' => 0,
+                'message' => '请上传图片',
+                'url'     => ''
+            ]);
+        }
+
     }
 }
