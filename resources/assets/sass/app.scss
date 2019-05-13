@@ -1,9 +1,35 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
+@import "global";
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.site-header{
+  color: #fff;
+  background: #090a0b no-repeat 50%;
+  background-size: cover;
+}
+
+.site-header-inner{
+  margin:0 auto;
+  width: 100%;
+  max-width: 1240px;
+}
+
+.site-header-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.site-title{
+  font-size: 3.8rem;
+}
+
+.logo-img{
+  max-height: 50px;
+}

@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// 前台路由
+Route::namespace('Home')->group(function () {
+    Route::get('/','IndexController@index')->name('home.index.index');
 });
 
 
@@ -25,8 +26,6 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         // 退出登陆
         Route::get('logout', 'LoginController@logout')->name('admin.logout');
     });
-
-
 });
 
 Route::namespace('Auth')->prefix('auth')->group(function () {
