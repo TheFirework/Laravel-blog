@@ -59,7 +59,7 @@
                                         @endif
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                                            <input type="text" id="author" name="author" value="{{ old('author') }}" maxlength="255"
+                                            <input type="text" id="author" name="author" value="{{ $config }}" maxlength="255"
                                                    class="form-control author" placeholder="输入 作者">
                                         </div>
                                     </div>

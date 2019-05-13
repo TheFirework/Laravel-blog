@@ -47,7 +47,9 @@ class ArticleController extends Controller
 
         $tags = Tag::all();
 
-        return view('admin/article/create', compact('categories', 'tags'));
+        $config = config('blog.author');
+
+        return view('admin/article/create', compact('categories', 'tags','config'));
     }
 
     public function store(Store $request,ImageUploadHandler $uploader)
