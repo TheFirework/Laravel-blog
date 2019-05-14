@@ -124,6 +124,7 @@ html {
 }
 a {
   background-color: transparent;
+  text-decoration: none;
 }
 a:active,
 a:hover {
@@ -139,7 +140,7 @@ dfn {
   font-style: italic;
 }
 h1 {
-  margin: 0.67em 0;
+  margin: 0;
   font-size: 2em;
 }
 small {
