@@ -171,6 +171,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         LaravelChen\MyFlash\MyFlashProvider::class,
         Overtrue\LaravelLang\TranslationServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
         /*
          * Application Service Providers...
          */

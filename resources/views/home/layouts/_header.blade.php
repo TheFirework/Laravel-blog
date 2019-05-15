@@ -13,14 +13,13 @@
             <div class="site-left-nav">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a href="#">首页</a>
+                        <a href="{{ route('home.index.index') }}">首页</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#">首页</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">首页</a>
-                    </li>
+                    @foreach($categories as $category)
+                        <li class="nav-item">
+                            <a href="#">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="site-right-nav">

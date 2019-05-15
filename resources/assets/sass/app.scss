@@ -8,6 +8,16 @@ body {
   background: #EEEEEE;
 }
 
+.loader {
+  width: 100%;
+  height: 100%;
+}
+
+.loader img{
+  width: 100%;
+  height: 100%;
+}
+
 #app {
   display: flex;
   flex-direction: column;
@@ -56,14 +66,14 @@ body {
   font-size: 1.2rem;
 }
 
-.site-nav{
-  display:flex;
+.site-nav {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.nav{
+.nav {
   display: flex;
   flex-direction: row;
 }
@@ -82,32 +92,37 @@ body {
   padding-top: 20px;
 }
 
-.article-list{
+.article-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.article-item{
+.ajax-load {
+  text-align: center;
+  padding: 4px 0;
+}
+
+.article-item {
   flex: 1 1 410px;
   padding: 15px 20px;
 }
 
-.article-item-content{
+.article-item-content {
   border-radius: 5px;
-  box-shadow: 8px 14px 38px rgba(39,44,49,.06), 1px 3px 8px rgba(16,25,33,.21);
+  box-shadow: 8px 14px 38px rgba(39, 44, 49, .06), 1px 3px 8px rgba(16, 25, 33, .21);
   transition: all .5s ease;
   display: flex;
   flex-direction: column;
   padding: 25px 25px 0 25px;
 }
 
-.article-item-content a{
+.article-item-content a {
   text-decoration: none;
 }
 
-.article-item-category{
-  display:block;
+.article-item-category {
+  display: block;
   font-weight: 700;
   margin-bottom: 4px;
   color: #656f73;
@@ -120,33 +135,32 @@ body {
   margin-bottom: 6px;
 }
 
-.article-item-description{
-  font-size:1rem;
+.article-item-description {
+  font-size: 1rem;
   color: #000000;
   line-height: 1.5;
 }
 
-.article-item-title{
+.article-item-title {
   color: #000000;
   font-weight: bold;
   letter-spacing: .5px;
   font-size: 1.4rem;
 }
 
-.article-item-footer{
+.article-item-footer {
   margin-top: 30px;
   padding-bottom: 25px;
   text-align: right;
 }
 
-.publication-date{
+.publication-date {
   font-weight: 700;
   color: #656f73;
   font-size: 0.9rem;
   letter-spacing: .5px;
   text-transform: uppercase;
 }
-
 
 
 .footer {
@@ -163,4 +177,9 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
 }
