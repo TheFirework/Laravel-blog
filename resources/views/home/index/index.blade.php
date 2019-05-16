@@ -7,7 +7,7 @@
 
 @section('content')
     <div class="main">
-        <div class="container">
+        <div class="container article-flex">
             <div class="article-list infinite-scroll">
                 {{--@if(!empty($articles))--}}
                     {{--@foreach($articles as $article)--}}
@@ -31,6 +31,48 @@
                         {{--</article>--}}
                     {{--@endforeach--}}
                 {{--@endif--}}
+            </div>
+            <div class="article-left">
+                <section class="article-left-box search-box">
+                    <form action="#" method="post">
+                        <input type="text" id="search" class="search-input">
+                        <input type="submit" class="search-btn" value="Search">
+                    </form>
+                </section>
+                <section class="article-left-box tag-box">
+                    <ol class="tags">
+                        <li class="tags-item">
+                            <span>PHP</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>Javascript</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>MYSQL</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>CENTOS</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>Laravel</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>html</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>css</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>NODEJS</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>VUE</span>
+                        </li>
+                        <li class="tags-item">
+                            <span>ASKDASKD</span>
+                        </li>
+                    </ol>
+                </section>
             </div>
         </div>
     </div>

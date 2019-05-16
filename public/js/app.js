@@ -45298,13 +45298,16 @@ $(function ($) {
     var pathname = window.location.pathname;
     var $document = $(document);
     var $result = $('.article-list');
-    var buffer = 300;
+    var buffer = 127;
 
     var ticking = false;
     var isLoading = false;
 
+    //文档当前垂直滚动的像素数
     var lastScrollY = window.scrollY;
+    //窗口的高
     var lastWindowHeight = window.innerHeight;
+    //整个文档的高度
     var lastDocumentHeight = $document.height();
 
     function onScroll() {
@@ -45410,6 +45413,8 @@ $(function ($) {
     window.addEventListener('resize', onResize);
 
     infiniteScroll();
+
+    $(window).trigger("resize");
 });
 /**
  * Next, we will create a fresh Vue application instance and attach it to
