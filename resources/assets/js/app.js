@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -11,40 +10,17 @@ require('jscroll');
 
 window.Vue = require('vue');
 
-$('#app').css('display','none');
-
-//监听加载状态改变
-document.onreadystatechange = completeLoading;
-
-const delay = timeout => new Promise((resolve, reject)=> {
-    setTimeout(resolve,timeout)
-});
-async function main(){
-    const root = document.querySelector("#app");
-    await delay(1000);
-
-    root.setAttribute("style","display:block")
-}
-
-//加载状态为complete时移除loading效果
-function completeLoading() {
-    if (document.readyState == "complete") {
-        $('.loader').css('display','none');
-        main();
-    }
-}
-
 $(function ($) {
     var currentPage = 0;
     var pathname = window.location.pathname;
     var $document = $(document);
     var $result = $('.article-list');
-    var buffer = 127;
+    var buffer = 300;
 
     var ticking = false;
     var isLoading = false;
 
-    //文档当前垂直滚动的像素数
+    //文档在垂直方向已滚动的像素值
     var lastScrollY = window.scrollY;
     //窗口的高
     var lastWindowHeight = window.innerHeight;
@@ -70,21 +46,15 @@ $(function ($) {
     }
 
     function sanitizePathname(path) {
-        var paginationRegex = /(?:page\/)(\d)(?:\/)$/i;
+        var paginationRegex = /(?:page=)(\d)(?:\/)$/i;
 
-        // remove hash params from path
+        // 从路径中删除哈希参数
         path = path.replace(/#(.*)$/g, '').replace('////g', '/');
 
-        // remove pagination from the path and replace the current pages
-        // with the actual requested page. E. g. `/page/3/` indicates that
-        // the user actually requested page 3, so we should request page 4
-        // next, unless it's the last page already.
         if (path.match(paginationRegex)) {
             currentPage = parseInt(path.match(paginationRegex)[1]);
-
             path = path.replace(paginationRegex, '');
         }
-
         return path;
     }
 
@@ -92,22 +62,19 @@ $(function ($) {
         // sanitize the pathname from possible pagination or hash params
         pathname = sanitizePathname(pathname);
 
-        // return if already loading
+        // 如果已经加载就返回
         if (isLoading) {
             return;
         }
 
-        // return if not scroll to the bottom
+        // 如果没有滚动到底部就返回
         if (lastScrollY + lastWindowHeight <= lastDocumentHeight - buffer) {
             ticking = false;
             return;
         }
 
         /**
-         * maxPages is defined in default.hbs and is the value
-         * of the amount of pagination pages.
-         * If we reached the last page or are past it,
-         * we return and disable the listeners.
+         * 如果超过了最大页数，就接触绑定事件 scroll 和 resize
          */
         if (currentPage >= maxPages) {
             window.removeEventListener('scroll', onScroll, {
@@ -119,10 +86,10 @@ $(function ($) {
 
         isLoading = true;
 
-        // next page
+        // 下一页
         currentPage += 1;
 
-        // Load more
+        // 加载更多地址拼接
         var nextPage = pathname + '?page=' + currentPage;
 
         $.get(nextPage, function (content) {
@@ -154,8 +121,7 @@ $(function ($) {
     window.addEventListener('resize', onResize);
 
     infiniteScroll();
-
-    $(window).trigger("resize");
+    $(window).trigger('resize')
 });
 /**
  * Next, we will create a fresh Vue application instance and attach it to

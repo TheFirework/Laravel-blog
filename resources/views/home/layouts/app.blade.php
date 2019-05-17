@@ -11,9 +11,6 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-{{--<div class="loader">--}}
-    {{--<img src="{{ asset('images/loading.gif') }}" alt="">--}}
-{{--</div>--}}
 <div id="app">
     @yield('header')
     @yield('content')

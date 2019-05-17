@@ -13,7 +13,12 @@
 
 // 前台路由
 Route::namespace('Home')->group(function () {
+    //首页
     Route::get('/','IndexController@index')->name('home.index.index');
+    //文章分类列表
+    Route::get('/category/{category}','CategoryController@index')->name('home.category.index');
+    //文章标签列表
+    Route::get('/tag/{tag}','TagController@index')->name('home.tag.index');
 });
 
 

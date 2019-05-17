@@ -1,5 +1,4 @@
 <header class="site-header" style="background-image: url('{{ asset('images/fireworks.png') }}')">
-{{--<header class="site-header" style="background-image: url('https://casper.ghost.org/v1.0.0/images/blog-cover.jpg')">--}}
     <div class="site-header-inner container">
         <div class="site-header-content">
             <h1 class="site-title">
@@ -17,7 +16,7 @@
                     </li>
                     @foreach($categories as $category)
                         <li class="nav-item">
-                            <a href="#">{{ $category->name }}</a>
+                            <a href="{{ route('home.category.index',$category->id) }}">{{ $category->name }}</a>
                         </li>
                     @endforeach
                 </ul>
